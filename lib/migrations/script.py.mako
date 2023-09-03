@@ -16,9 +16,10 @@ branch_labels = ${repr(branch_labels)}
 depends_on = ${repr(depends_on)}
 
 
-def upgrade() -> None:
-    ${upgrades if upgrades else "pass"}
 
+def upgrade():
+    op.alter_column('students', 'old_column', new_column_name='new_column')
 
-def downgrade() -> None:
-    ${downgrades if downgrades else "pass"}
+def downgrade():
+    op.alter_column('students', 'new_column', new_column_name='old_column')
+
